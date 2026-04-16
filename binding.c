@@ -128,6 +128,13 @@ bare_posix_getgrnam(js_env_t *env, js_callback_info_t *info) {
   err = js_set_named_property(env, result, "groupname", groupname);
   assert(err == 0);
 
+  js_value_t *passwd;
+  err = js_create_string_utf8(env, (utf8_t *) grp->gr_passwd, strlen(grp->gr_passwd), &passwd);
+  assert(err == 0);
+
+  err = js_set_named_property(env, result, "passwd", passwd);
+  assert(err == 0);
+
   js_value_t *gid;
   err = js_create_int32(env, grp->gr_gid, &gid);
   assert(err == 0);

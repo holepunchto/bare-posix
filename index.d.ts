@@ -12,6 +12,8 @@ export function setuid(id: number | string): void
 
 export function geteuid(): number
 
+export function seteuid(id: number | string): void
+
 export function getgroups(): number[]
 
 export interface Group {

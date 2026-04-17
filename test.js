@@ -29,6 +29,10 @@ test('geteuid', (t) => {
   t.comment(posix.geteuid())
 })
 
+test('seteuid', (t) => {
+  t.execution(() => posix.seteuid(posix.geteuid()))
+})
+
 test('getgroups', (t) => {
   t.comment(posix.getgroups())
 })

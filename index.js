@@ -26,6 +26,12 @@ exports.setuid = function setuid(id) {
 
 exports.geteuid = binding.geteuid
 
+exports.seteuid = function seteuid(id) {
+  if (typeof id === 'string') id = exports.getpwnam(id).uid
+
+  binding.seteuid(id)
+}
+
 exports.getgroups = binding.getgroups
 
 exports.getgrnam = binding.getgrnam

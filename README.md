@@ -22,6 +22,8 @@ npm i bare-posix
 
 #### `posix.geteuid()`
 
+#### `posix.seteuid(id)`
+
 #### `posix.getgroups()`
 
 #### `posix.getgrnam(name)`

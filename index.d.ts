@@ -4,6 +4,8 @@ export function setgid(id: number | string): void
 
 export function getegid(): number
 
+export function setegid(id: number | string): void
+
 export function getuid(): number
 
 export function geteuid(): number

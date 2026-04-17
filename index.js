@@ -10,6 +10,12 @@ exports.setgid = function setgid(id) {
 
 exports.getegid = binding.getegid
 
+exports.setegid = function setegid(id) {
+  if (typeof id === 'string') id = exports.getgrnam(id).groupname
+
+  binding.setegid(id)
+}
+
 exports.getuid = binding.getuid
 
 exports.geteuid = binding.geteuid

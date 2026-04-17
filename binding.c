@@ -54,6 +54,33 @@ bare_posix_getegid(js_env_t *env, js_callback_info_t *info) {
 }
 
 static js_value_t *
+bare_posix_setegid(js_env_t *env, js_callback_info_t *info) {
+  int err;
+
+  size_t argc = 1;
+  js_value_t *argv[1];
+
+  err = js_get_callback_info(env, info, &argc, argv, NULL, NULL);
+  assert(err == 0);
+
+  assert(argc == 1);
+
+  uint32_t gid;
+  err = js_get_value_uint32(env, argv[0], &gid);
+  assert(err == 0);
+
+  err = setegid(gid);
+  if (err == -1) {
+    err = uv_translate_sys_error(errno);
+
+    err = js_throw_error(env, uv_err_name(err), uv_strerror(err));
+    assert(err == 0);
+  }
+
+  return NULL;
+}
+
+static js_value_t *
 bare_posix_getuid(js_env_t *env, js_callback_info_t *info) {
   int err;
 
@@ -327,6 +354,8 @@ bare_posix_exports(js_env_t *env, js_value_t *exports) {
   V("setgid", bare_posix_setgid)
 
   V("getegid", bare_posix_getegid)
+  V("setegid", bare_posix_setegid)
+
   V("getuid", bare_posix_getuid)
   V("geteuid", bare_posix_geteuid)
 

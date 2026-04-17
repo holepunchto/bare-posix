@@ -14,6 +14,8 @@ npm i bare-posix
 
 #### `posix.getegid()`
 
+#### `posix.setegid(id)`
+
 #### `posix.getuid()`
 
 #### `posix.geteuid()`

@@ -99,7 +99,9 @@ bare_posix_getgrnam(js_env_t *env, js_callback_info_t *info) {
   struct group *grp = getgrnam((char *) name);
 
   if (errno != 0) {
-    err = js_throw_error(env, uv_err_name(errno), uv_strerror(errno));
+    err = uv_translate_sys_error(errno);
+
+    err = js_throw_error(env, uv_err_name(err), uv_strerror(err));
     assert(err == 0);
 
     free(name);

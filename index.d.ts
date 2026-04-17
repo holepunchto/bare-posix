@@ -1,5 +1,7 @@
 export function getgid(): number
 
+export function setgid(id: number | string): void
+
 export function getegid(): number
 
 export function getuid(): number

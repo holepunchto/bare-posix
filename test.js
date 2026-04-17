@@ -5,6 +5,10 @@ test('getgid', (t) => {
   t.comment(posix.getgid())
 })
 
+test('setgid', (t) => {
+  t.execution(() => posix.setgid(posix.getgid()))
+})
+
 test('getegid', (t) => {
   t.comment(posix.getegid())
 })

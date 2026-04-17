@@ -2,6 +2,12 @@ const binding = require('./binding')
 
 exports.getgid = binding.getgid
 
+exports.setgid = function setgid(id) {
+  if (typeof id === 'string') id = exports.getgrnam(id).groupname
+
+  binding.setgid(id)
+}
+
 exports.getegid = binding.getegid
 
 exports.getuid = binding.getuid

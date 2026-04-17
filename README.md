@@ -18,6 +18,8 @@ npm i bare-posix
 
 #### `posix.getuid()`
 
+#### `posix.setuid(id)`
+
 #### `posix.geteuid()`
 
 #### `posix.getgroups()`

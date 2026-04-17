@@ -8,6 +8,8 @@ export function setegid(id: number | string): void
 
 export function getuid(): number
 
+export function setuid(id: number | string): void
+
 export function geteuid(): number
 
 export function getgroups(): number[]

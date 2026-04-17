@@ -21,6 +21,10 @@ test('getuid', (t) => {
   t.comment(posix.getuid())
 })
 
+test('setuid', (t) => {
+  t.execution(() => posix.setuid(posix.getuid()))
+})
+
 test('geteuid', (t) => {
   t.comment(posix.geteuid())
 })

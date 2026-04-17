@@ -52,7 +52,9 @@ bare_posix_getgroups(js_env_t *env, js_callback_info_t *info) {
 
   int len = getgroups(0, NULL);
   if (len == -1) {
-    err = js_throw_error(env, uv_err_name(errno), uv_strerror(errno));
+    err = uv_translate_sys_error(errno);
+
+    err = js_throw_error(env, uv_err_name(err), uv_strerror(err));
     assert(err == 0);
 
     return NULL;
@@ -61,7 +63,9 @@ bare_posix_getgroups(js_env_t *env, js_callback_info_t *info) {
   gid_t gids[len];
   len = getgroups(len, gids);
   if (len == -1) {
-    err = js_throw_error(env, uv_err_name(errno), uv_strerror(errno));
+    err = uv_translate_sys_error(errno);
+
+    err = js_throw_error(env, uv_err_name(err), uv_strerror(err));
     assert(err == 0);
 
     return NULL;

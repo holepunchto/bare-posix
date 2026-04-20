@@ -12,18 +12,6 @@ jobs:
           - os: ubuntu-22.04-arm
             platform: linux
             arch: arm64
-          #- os: ubuntu-24.04
-          #  platform: android
-          #  arch: x64
-          #- os: ubuntu-24.04
-          #  platform: android
-          #  arch: ia32
-          #- os: ubuntu-24.04
-          #  platform: android
-          #  arch: arm64
-          #- os: ubuntu-24.04
-          #  platform: android
-          #  arch: arm
           - os: macos-14
             platform: darwin
             arch: x64
@@ -43,12 +31,6 @@ jobs:
             arch: x64
             tags: -simulator
             flags: --simulator
-          #- os: windows-2022
-          #  platform: win32
-          #  arch: x64
-          #- os: windows-2022
-          #  platform: win32
-          #  arch: arm64
     runs-on: ${{ matrix.os }}
     name: Build / ${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.tags }}
     steps:

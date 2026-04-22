@@ -6,6 +6,8 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
+      "android": "./posix-shim.js",
+      "win32": "./posix-shim.js",
       "default": "./index.js"
     },
     "./package": "./package.json"
@@ -13,6 +15,7 @@
   "files": [
     "index.js",
     "index.d.ts",
+    "posix-shim.js",
     "binding.c",
     "binding.js",
     "CMakeLists.txt",

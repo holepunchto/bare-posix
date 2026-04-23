@@ -1,6 +1,7 @@
 const test = require('brittle')
-const { isWindows } = require('which-runtime')
 const posix = require('.')
+
+const isWindows = Bare.platform === 'win32'
 
 test('getgid', (t) => {
   t.comment(posix.getgid())

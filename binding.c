@@ -2,6 +2,7 @@
 #include <grp.h>
 #include <js.h>
 #include <pwd.h>
+#include <string.h>
 #include <unistd.h>
 
 static js_value_t *
@@ -217,6 +218,15 @@ bare_posix_getgrnam(js_env_t *env, js_callback_info_t *info) {
   err = js_get_value_string_utf8(env, argv[0], name, name_len, &name_len);
   assert(err == 0);
 
+  if (strlen((char *) name) != name_len) {
+    free(name);
+
+    err = js_throw_type_error(env, NULL, "Name must not contain null bytes");
+    assert(err == 0);
+
+    return NULL;
+  }
+
   errno = 0;
 
   struct group *grp = getgrnam((char *) name);
@@ -307,6 +317,15 @@ bare_posix_getpwnam(js_env_t *env, js_callback_info_t *info) {
   utf8_t *name = malloc(++name_len);
   err = js_get_value_string_utf8(env, argv[0], name, name_len, &name_len);
   assert(err == 0);
+
+  if (strlen((char *) name) != name_len) {
+    free(name);
+
+    err = js_throw_type_error(env, NULL, "Name must not contain null bytes");
+    assert(err == 0);
+
+    return NULL;
+  }
 
   errno = 0;
 

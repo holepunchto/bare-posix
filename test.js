@@ -46,3 +46,8 @@ test('getgrnam', (t) => {
 test('getpwnam', (t) => {
   t.is(posix.getpwnam('user_not_found'), null)
 })
+
+test('getgrnam and getpwnam with a NUL', { skip: isWindows }, (t) => {
+  t.exception.all(() => posix.getgrnam('root\0x'), TypeError)
+  t.exception.all(() => posix.getpwnam('root\0x'), TypeError)
+})

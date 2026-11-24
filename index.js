@@ -34,6 +34,21 @@ exports.seteuid = function seteuid(id) {
 
 exports.getgroups = binding.getgroups
 
-exports.getgrnam = binding.getgrnam
+exports.getgrnam = function getgrnam(name) {
+  validateNoNullBytes(name, 'name')
 
-exports.getpwnam = binding.getpwnam
+  return binding.getgrnam(name)
+}
+
+exports.getpwnam = function getpwnam(name) {
+  validateNoNullBytes(name, 'name')
+
+  return binding.getpwnam(name)
+}
+
+// The name is passed on as a C string, so a NUL would cut it short.
+function validateNoNullBytes(value, name) {
+  if (typeof value === 'string' && value.includes('\0')) {
+    throw new TypeError(`The "${name}" argument must not contain null bytes`)
+  }
+}

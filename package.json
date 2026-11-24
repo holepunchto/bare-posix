@@ -1,6 +1,6 @@
 {
   "name": "bare-posix",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "POSIX-specific bindings for Bare",
   "exports": {
     ".": {
